@@ -1,4 +1,5 @@
 cosign.key
 _build_*
 output
+output-repo
 _build-*/**
