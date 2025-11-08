@@ -9,4 +9,7 @@ dnf5 install -y curl git btop tmux flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "LANG=de_DE.UTF-8" >> /etc/default/locale
 dnf update -y
+curl -fsSLo /etc/yum.repos.d/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+rpm-ostree install brave-browser
+rm /etc/yum.repos.d/brave-browser.repo
 dnf clean all
