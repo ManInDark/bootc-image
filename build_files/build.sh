@@ -19,5 +19,6 @@ dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release
                 dnf-plugins-core
 sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-cisco-openh264.repo
 dnf5 install -y steam discord
+sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-cisco-openh264.repo
 dnf5 remove -y rpmfusion-free-release rpmfusion-nonfree-release dnf-plugins-core
 dnf5 clean all
