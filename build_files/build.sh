@@ -15,8 +15,9 @@ rpm-ostree install brave-browser
 rm /etc/yum.repos.d/brave-browser.repo
 # Install Steam: https://docs.fedoraproject.org/en-US/gaming/proton/#_using_the_terminal
 dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-                https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+                https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm \
+                dnf-plugins-core
 dnf5 config-manager setopt fedora-cisco-openh264.enabled=1
 dnf5 install steam
-dnf5 remove -y rpmfusion-free-release rpmfusion-nonfree-release
+dnf5 remove -y rpmfusion-free-release rpmfusion-nonfree-release dnf-plugins-core
 dnf5 clean all
