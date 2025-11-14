@@ -13,6 +13,9 @@ echo "LANG=de_DE.UTF-8" >> /etc/default/locale
 curl -fsSLo /etc/yum.repos.d/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 rpm-ostree install brave-browser
 rm /etc/yum.repos.d/brave-browser.repo
+curl -fsSLo /etc/yum.repos.d/vscode.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
+rpm-ostree install code
+rm /etc/yum.repos.d/vscode.repo
 # Install Steam: https://docs.fedoraproject.org/en-US/gaming/proton/#_using_the_terminal
 dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
                 https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm \
