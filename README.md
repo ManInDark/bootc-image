@@ -10,14 +10,28 @@ A qcow image may be built by first calling `make oci` to build the oci image and
 
 ## Links
 
-- (getting started)[https://docs.fedoraproject.org/en-US/bootc/building-containers]
-- (Fedora Silverblue)[https://fedoraproject.org/atomic-desktops/silverblue/download] is a fully prepared gnome desktop distribution.
-- (cicd-bootc)[https://github.com/nzwulfin/cicd-bootc] example repository with github action workflow for building images
-- (universal-blue)[https://universal-blue.org] prebuilt image provider (Aurora, Bazzite, Bluefin, uCore)
-- (image building guidance)[https://bootc-dev.github.io/bootc/building/guidance.html]
-- (authentication in images)[https://docs.fedoraproject.org/en-US/bootc/authentication]
-- (provisioning with qemu and libvirt)[https://docs.fedoraproject.org/en-US/bootc/qemu-and-libvirt]
-- (fedora base images)[https://docs.fedoraproject.org/en-US/bootc/base-images]
-- (bootc image builder)[https://github.com/osbuild/bootc-image-builder]
-- (building bootc images from scratch)[https://docs.fedoraproject.org/en-US/bootc/building-from-scratch]
-- (building derived images)[https://docs.fedoraproject.org/en-US/bootc/building-containers]
+- [getting started](https://docs.fedoraproject.org/en-US/bootc/building-containers)
+- [Fedora Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/download) is a fully prepared gnome desktop distribution.
+- [cicd-bootc](https://github.com/nzwulfin/cicd-bootc) example repository with github action workflow for building images
+- [universal-blue](https://universal-blue.org) prebuilt image provider (Aurora, Bazzite, Bluefin, uCore)
+- [image building guidance](https://bootc-dev.github.io/bootc/building/guidance.html)
+- [authentication in images](https://docs.fedoraproject.org/en-US/bootc/authentication)
+- [provisioning with qemu and libvirt](https://docs.fedoraproject.org/en-US/bootc/qemu-and-libvirt)
+- [fedora base images](https://docs.fedoraproject.org/en-US/bootc/base-images)
+- [bootc image builder](https://github.com/osbuild/bootc-image-builder)
+- [building bootc images from scratch](https://docs.fedoraproject.org/en-US/bootc/building-from-scratch)
+- [building derived images](https://docs.fedoraproject.org/en-US/bootc/building-containers)
+
+## Installed Software
+
+- man
+- langpacks: en, de
+- Gnome + Software
+- curl
+- git
+- btop
+- tmux
+- Flatpak (with default repository configured)
+- Brave
+- VSCode
+- Steam

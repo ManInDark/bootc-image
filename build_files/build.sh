@@ -13,6 +13,7 @@ echo "LANG=de_DE.UTF-8" >> /etc/default/locale
 curl -fsSLo /etc/yum.repos.d/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 rpm-ostree install brave-browser
 rm /etc/yum.repos.d/brave-browser.repo
+# Install VSCode: https://packages.microsoft.com/yumrepos/vscode/
 curl -fsSLo /etc/yum.repos.d/vscode.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 rpm-ostree install code
 rm /etc/yum.repos.d/vscode.repo
