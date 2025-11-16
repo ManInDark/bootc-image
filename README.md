@@ -21,6 +21,9 @@ A qcow image may be built by first calling `make oci` to build the oci image and
 - [bootc image builder](https://github.com/osbuild/bootc-image-builder)
 - [building bootc images from scratch](https://docs.fedoraproject.org/en-US/bootc/building-from-scratch)
 - [building derived images](https://docs.fedoraproject.org/en-US/bootc/building-containers)
+- [osbuild partitioning](https://osbuild.org/docs/user-guide/partitioning)
+- [osbuild blueprint reference](https://osbuild.org/docs/user-guide/blueprint-reference)
+- [filesystem guide](https://bootc-dev.github.io/bootc/filesystem.html)
 
 ## Installed Software
 
