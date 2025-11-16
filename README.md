@@ -36,6 +36,7 @@ A qcow image may be built by first calling `make oci` to build the oci image and
 - tmux
 - pciutils
 - tailscale
+- make
 - Flatpak (with default repository configured)
 - Brave
 - VSCode

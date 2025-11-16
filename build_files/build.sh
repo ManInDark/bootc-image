@@ -6,7 +6,7 @@ dnf5 update -y
 dnf5 install -y man-pages man-db glibc-langpack-en glibc-langpack-de
 dnf5 install -y --setopt=exclude=gnome-tour,malcontent-control gnome-shell gnome-keyring gnome-keyring-pam gnome-bluetooth gnome-terminal nautilus evolution gnome-shell-extension-appindicator
 dnf5 install -y gnome-calculator gnome-disk-utility gnome-backgrounds
-dnf5 install -y curl git btop tmux flatpak pciutils tailscale
+dnf5 install -y curl git btop tmux flatpak pciutils tailscale make
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "LANG=de_DE.UTF-8" >> /etc/default/locale
 ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
