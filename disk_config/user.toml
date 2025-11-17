@@ -2,3 +2,22 @@
 name = "testuser"
 password = "test"
 groups = ["wheel"]
+
+[[customizations.disk.partitions]]
+type = "plain"
+fs_type = "swap"
+minsize = "4 GiB"
+
+[[customizations.disk.partitions]]
+type = "plain"
+fs_type = "ext4"
+label = "root"
+minsize = "10 GiB"
+mountpoint = "/"
+
+[[customizations.disk.partitions]]
+type = "plain"
+fs_type = "ext4"
+label = "home"
+minsize = "10 GiB"
+mountpoint = "/home"

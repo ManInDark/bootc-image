@@ -6,7 +6,9 @@ I've attached various links I used to learn about how all of this works below, t
 
 ## Build
 
-A qcow image may be built by first calling `make oci` to build the oci image and then `make qcow` to turn it into a bootable qcow image.
+A qcow image may be built by first calling `make oci` to build the oci image and then `make qcow` to turn it into a bootable qcow image. For hardware installation, I recommend the anaconda-iso variant.
+
+You should adapt user & disk settings in `disk_config/user.toml` before you build your own installation iso though.
 
 ## Links
 
