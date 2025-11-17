@@ -35,6 +35,7 @@ You should adapt user & disk settings in `disk_config/user.toml` before you buil
 - curl
 - git
 - btop
+- nvtop
 - tmux
 - pciutils
 - tailscale
