@@ -12,20 +12,8 @@ echo "LANG=de_DE.UTF-8" >> /etc/default/locale
 ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 systemctl enable tailscaled.service
 systemctl disable sshd.service
-# Install Brave: https://brave.com/linux/
-curl -fsSLo /etc/yum.repos.d/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-rpm-ostree install brave-browser
-rm /etc/yum.repos.d/brave-browser.repo
 # Install VSCode: https://packages.microsoft.com/yumrepos/vscode/
 curl -fsSLo /etc/yum.repos.d/vscode.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 rpm-ostree install code
 rm /etc/yum.repos.d/vscode.repo
-# Install Steam: https://docs.fedoraproject.org/en-US/gaming/proton/#_using_the_terminal
-dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-                https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm \
-                dnf-plugins-core
-sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-cisco-openh264.repo
-dnf5 install -y steam discord
-sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-cisco-openh264.repo
-dnf5 remove -y rpmfusion-free-release rpmfusion-nonfree-release dnf-plugins-core
 dnf5 clean all
