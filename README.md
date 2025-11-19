@@ -45,6 +45,7 @@ It may be necessary to create your own keys: https://github.com/CheariX/silverbl
 - fzf
 - direnv
 - wl-clipboard
+- ffmpeg
 - Flatpak (with default repository configured)
 - Chromium
 - VSCode
