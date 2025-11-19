@@ -44,7 +44,7 @@ It may be necessary to create your own keys: https://github.com/CheariX/silverbl
 - make
 - fzf
 - direnv
-- wl-clipboard
+- xsel
 - ffmpeg
 - Flatpak (with default repository configured)
 - Chromium
