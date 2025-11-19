@@ -10,6 +10,7 @@ dnf5 install -y curl git btop nvtop tmux flatpak pciutils tailscale make fzf dir
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "LANG=de_DE.UTF-8" >> /etc/default/locale
 ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+ln -s /usr/bin/xdg-open /usr/bin/open
 systemctl enable tailscaled.service
 systemctl disable sshd.service
 # Install VSCode: https://packages.microsoft.com/yumrepos/vscode/
