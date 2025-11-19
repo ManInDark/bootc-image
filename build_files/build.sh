@@ -22,6 +22,7 @@ rm /etc/yum.repos.d/vscode.repo
 # https://rpmfusion.org/Howto/NVIDIA
 # https://www.tecmint.com/install-nvidia-drivers-in-linux
 
+dnf5 -y remove  nvidia-gpu-firmware rocm-hip rocm-opencl rocm-clinfo rocm-smi
 dnf5 install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
                 https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 dnf5 install -y kernel-devel kernel-headers gcc make dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig \

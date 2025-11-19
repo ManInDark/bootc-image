@@ -10,6 +10,8 @@ A qcow image may be built by first calling `make oci` to build the oci image and
 
 You should adapt user & disk settings in `disk_config/user.toml` before you build your own installation iso though.
 
+It may be necessary to create your own keys: https://github.com/CheariX/silverblue-akmods-keys
+
 ## Links
 
 - [getting started](https://docs.fedoraproject.org/en-US/bootc/building-containers)
