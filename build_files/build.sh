@@ -22,13 +22,11 @@ rm /etc/yum.repos.d/vscode.repo
 # https://rpmfusion.org/Howto/NVIDIA
 # https://www.tecmint.com/install-nvidia-drivers-in-linux
 
-mkdir /var/log/akmods
 dnf5 install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
                 https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 dnf5 install -y kernel-devel kernel-headers gcc make dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig \
                 akmod-nvidia xorg-x11-drv-nvidia-cuda \
                 libva-utils vdpauinfo
-akmods --force
 dnf5 remove -y  rpmfusion-free-release rpmfusion-nonfree-release
 
 dnf5 clean all
