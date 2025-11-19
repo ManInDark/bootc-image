@@ -46,3 +46,4 @@ You should adapt user & disk settings in `disk_config/user.toml` before you buil
 - Flatpak (with default repository configured)
 - Chromium
 - VSCode
+- NVIDIA Drivers
