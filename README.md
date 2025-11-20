@@ -12,6 +12,8 @@ You should adapt user & disk settings in `disk_config/user.toml` before you buil
 
 It may be necessary to create your own keys: https://github.com/CheariX/silverblue-akmods-keys
 
+The kernel arguments need to be added manually: `rpm-ostree kargs --append=rd.driver.blacklist=nouveau,nova_core --append=modprobe.blacklist=nouveau,nova_core --append=nvidia-drm.modeset=1`
+
 ## Links
 
 - [getting started](https://docs.fedoraproject.org/en-US/bootc/building-containers)
@@ -28,6 +30,8 @@ It may be necessary to create your own keys: https://github.com/CheariX/silverbl
 - [osbuild partitioning](https://osbuild.org/docs/user-guide/partitioning)
 - [osbuild blueprint reference](https://osbuild.org/docs/user-guide/blueprint-reference)
 - [filesystem guide](https://bootc-dev.github.io/bootc/filesystem.html)
+
+It is possible to keep a revision by pinning it: `ostree admin pin 0`
 
 ## Installed Software
 
