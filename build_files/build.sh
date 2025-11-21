@@ -3,7 +3,7 @@
 set -ouex pipefail
 
 dnf5 update -y
-dnf5 install -y man-pages man-db glibc-langpack-en glibc-langpack-de
+dnf5 install -y man-pages man-db glibc-langpack-en glibc-langpack-de plymouth
 dnf5 install -y --setopt=exclude=gnome-tour,malcontent-control gnome-shell gnome-keyring gnome-keyring-pam gnome-bluetooth gnome-terminal nautilus seahorse evolution totem gnome-extensions-app gnome-browser-connector gnome-shell-extension-appindicator
 dnf5 install -y gnome-calculator gnome-disk-utility gnome-backgrounds
 dnf5 install -y curl git btop nvtop tmux flatpak pciutils tailscale make fzf direnv xsel chromium ffmpeg-free
