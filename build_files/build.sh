@@ -19,6 +19,11 @@ curl -fsSLo /etc/yum.repos.d/vscode.repo https://packages.microsoft.com/yumrepos
 rpm-ostree install code
 rm /etc/yum.repos.d/vscode.repo
 
+# https://rpmfusion.org/Howto/NVIDIA
+# https://www.tecmint.com/install-nvidia-drivers-in-linux
+# https://github.com/ublue-os/akmods
+# https://github.com/ublue-os/bazzite
+# https://github.com/Comprehensive-Wall28/Nvidia-Fedora-Guide
 # this is a combination of bazzite & ublue-os nvidia installation
 # there is probably a better way to do it, but this works (I hope)
 dnf install -y \
@@ -26,5 +31,10 @@ dnf install -y \
     /nvidia-kernel/rpms/kmods/kmod-nvidia*.rpm \
     /nvidia-packages/nvidia-kmod-common-* \
     /nvidia-packages/nvidia-modprobe-5*
+
+dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+		https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf5 install -y xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
+dnf5 remove  -y rpmfusion-free-release rpmfusion-nonfree-release
 
 dnf5 clean all
