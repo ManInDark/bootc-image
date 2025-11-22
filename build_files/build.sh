@@ -2,6 +2,7 @@
 
 set -ouex pipefail
 cp /ctx/bootc-fetch-apply-updates.service /usr/lib/systemd/system/bootc-fetch-apply-updates.service
+cp /ctx/os-release /usr/lib/os-release
 
 dnf5 update -y
 dnf5 install -y man-pages man-db glibc-langpack-en glibc-langpack-de plymouth
