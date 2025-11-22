@@ -7,7 +7,7 @@ dnf5 update -y
 dnf5 install -y man-pages man-db glibc-langpack-en glibc-langpack-de plymouth
 dnf5 install -y --setopt=exclude=gnome-tour,malcontent-control gnome-shell gnome-keyring gnome-keyring-pam gnome-bluetooth gnome-terminal nautilus seahorse evolution totem gnome-extensions-app gnome-browser-connector gnome-shell-extension-appindicator
 dnf5 install -y gnome-calculator gnome-disk-utility gnome-backgrounds
-dnf5 install -y curl git btop nvtop tmux flatpak pciutils tailscale make fzf direnv xsel chromium ffmpeg-free 7zip
+dnf5 install -y curl git btop nvtop tmux flatpak pciutils tailscale make fzf direnv xsel chromium 7zip
 git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git /usr/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "LANG=de_DE.UTF-8" >> /etc/default/locale
@@ -22,7 +22,7 @@ rm /etc/yum.repos.d/vscode.repo
 
 dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
                 https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-dnf5 install -y x265-libs
+dnf5 install -y --allowerasing ffmpeg x265-libs
 
 # https://rpmfusion.org/Howto/NVIDIA
 # https://www.tecmint.com/install-nvidia-drivers-in-linux
