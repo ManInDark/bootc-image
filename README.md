@@ -14,6 +14,8 @@ It may be necessary to create your own keys: https://github.com/CheariX/silverbl
 
 The kernel arguments need to be added manually: `rpm-ostree kargs --append=rd.driver.blacklist=nouveau,nova_core --append=modprobe.blacklist=nouveau,nova_core --append=nvidia-drm.modeset=1`
 
+You may want to set `HOME` in the `.bashrc` or similar files to `/var/home/$USER` to display home-relative paths correctly in the shell.
+
 ## Links
 
 - [getting started](https://docs.fedoraproject.org/en-US/bootc/building-containers)
