@@ -2,6 +2,7 @@
 
 set -ouex pipefail
 cp /ctx/bootc-fetch-apply-updates.service /usr/lib/systemd/system/bootc-fetch-apply-updates.service
+cp /ctx/os-release /usr/lib/os-release
 
 dnf5 update -y
 dnf5 install -y man-pages man-db glibc-langpack-en glibc-langpack-de plymouth
@@ -39,6 +40,3 @@ dnf install -y \
 
 dnf5 remove  -y rpmfusion-free-release rpmfusion-nonfree-release
 dnf5 clean all
-
-cp /ctx/os-release /usr/lib/os-release
-echo "VERSION_ID=$(date +%Y-%m-%d)" >> /usr/lib/os-release

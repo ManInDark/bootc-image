@@ -1,4 +1,5 @@
-NAME="ManInDark Linux"
+NAME="ManInDark bootc Linux"
 ID=manindark-linux
-PRETTY_NAME="ManInDark's Linux"
+PRETTY_NAME="ManInDark's bootc Linux"
 VARIANT_ID=desktop
+VERSION_ID=43
