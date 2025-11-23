@@ -8,7 +8,7 @@ dnf5 update -y
 dnf5 install -y man-pages man-db glibc-langpack-en glibc-langpack-de plymouth
 dnf5 install -y --setopt=exclude=gnome-tour,malcontent-control gnome-shell gnome-keyring gnome-keyring-pam gnome-bluetooth gnome-terminal nautilus seahorse evolution totem gstreamer1-plugin-libav gnome-extensions-app gnome-browser-connector gnome-shell-extension-appindicator
 dnf5 install -y gnome-calculator gnome-disk-utility gnome-backgrounds
-dnf5 install -y curl git btop nvtop tmux flatpak pciutils tailscale make fzf direnv xsel chromium 7zip pandoc-common pandoc-pdf
+dnf5 install -y curl git btop nvtop tmux flatpak pciutils tailscale make fzf direnv xsel chromium 7zip pandoc-common pandoc-pdf ansible-core ansible-collection-community-general
 git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git /usr/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "LANG=de_DE.UTF-8" >> /etc/default/locale
