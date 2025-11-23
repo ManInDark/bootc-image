@@ -52,6 +52,7 @@ It is possible to keep a revision by pinning it: `ostree admin pin 0`
 - direnv
 - xsel
 - ffmpeg
+- pandoc
 - Flatpak (with default repository configured)
 - Chromium
 - VSCode
