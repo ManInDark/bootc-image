@@ -2,15 +2,12 @@
 name: Build container image
 on:
   pull_request:
-    branches:
-      - main
   schedule:
     - cron: '30 1 * * *'
   push:
-    branches:
-      - main
-    paths-ignore:
-      - '**/README.md'
+    paths:
+      - "Containerfile"
+      - "build_files/**"
   workflow_dispatch:
 
 env:
@@ -21,7 +18,7 @@ env:
   DEFAULT_TAG: "latest"
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name }}-${{ inputs.stream_name }}
   cancel-in-progress: true
 
 jobs:
@@ -50,7 +47,7 @@ jobs:
       - name: Mount BTRFS for podman storage
         id: container-storage-action
         uses: ublue-os/container-storage-action@911baca08baf30c8654933e9e9723cb399892140
-        continue-on-error: true 
+        continue-on-error: true
         with:
           target-dir: /var/lib/containers
           mount-opts: compress-force=zstd:2
@@ -65,9 +62,8 @@ jobs:
         id: metadata
         with:
           tags: |
-            type=raw,value=${{ env.DEFAULT_TAG }}
-            type=raw,value=${{ env.DEFAULT_TAG }}.{{date 'YYYYMMDD-HHmm'}}
-            type=raw,value={{date 'YYYYMMDD-HHmm'}}
+            type=raw,value=${{ github.ref_name }}.${{ env.DEFAULT_TAG }}
+            type=raw,value=${{ github.ref_name }}.{{date 'YYYYMMDD-HHmm'}}
             type=sha,enable=${{ github.event_name == 'pull_request' }}
             type=ref,event=pr
           labels: |
@@ -79,7 +75,7 @@ jobs:
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
             org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/tree/${{ github.sha }}
             org.opencontainers.image.vendor=${{ github.repository_owner }}
-            org.opencontainers.image.version=${{ env.DEFAULT_TAG }}.{{date 'YYYYMMDD-HHmm'}}
+            org.opencontainers.image.version=${{ github.ref_name }}.{{date 'YYYYMMDD-HHmm'}}
             io.artifacthub.package.deprecated=false
             io.artifacthub.package.keywords=${{ env.IMAGE_KEYWORDS }}
             io.artifacthub.package.license=Apache-2.0
