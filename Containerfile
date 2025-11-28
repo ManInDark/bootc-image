@@ -1,9 +1,9 @@
 FROM scratch AS ctx
 COPY build_files /
 
-FROM ghcr.io/ublue-os/akmods-nvidia:main-43 AS nvidia
+FROM ghcr.io/ublue-os/akmods-nvidia:main-42 AS nvidia
 
-FROM ghcr.io/ublue-os/base-main:43
+FROM ghcr.io/ublue-os/base-main:42
 
 RUN rm -r /opt && mkdir /opt
 
