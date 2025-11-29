@@ -21,20 +21,3 @@ curl -fsSLo /etc/yum.repos.d/vscode.repo https://packages.microsoft.com/yumrepos
 rpm-ostree install code
 rm /etc/yum.repos.d/vscode.repo
 
-dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-                https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-dnf5 install -y --allowerasing ffmpeg x265-libs
-
-# https://rpmfusion.org/Howto/NVIDIA
-# https://www.tecmint.com/install-nvidia-drivers-in-linux
-# https://github.com/ublue-os/akmods
-# https://github.com/Comprehensive-Wall28/Nvidia-Fedora-Guide
-# following ublue-os nvidia installation
-dnf5 install -y xorg-x11-drv-nvidia-cuda # xorg-x11-drv-nvidia
-
-dnf5 install -y \
-    /nvidia/rpms/ublue-os/ublue-os-nvidia*.rpm \
-    /nvidia/rpms/kmods/kmod-nvidia*.rpm \
-
-dnf5 remove  -y rpmfusion-free-release rpmfusion-nonfree-release
-dnf5 clean all
