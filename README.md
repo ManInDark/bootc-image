@@ -58,3 +58,30 @@ It is possible to keep a revision by pinning it: `ostree admin pin 0`
 - Chromium
 - VSCode
 - NVIDIA Drivers
+
+## Referenced Sources for NVIDIA Driver Installation
+
+### NVIDIA
+
+- https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+- https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#handle-uninstallation
+- https://developer.nvidia.com/cuda-downloads
+
+### ublue-os
+
+- https://github.com/ublue-os/main
+- https://github.com/ublue-os/akmods
+- https://github.com/ublue-os/hwe/pkgs/container/akmods-nvidia
+
+### RPM Fusion
+
+- https://rpmfusion.org/Howto/NVIDIA
+
+### Bluefin
+
+- https://github.com/ublue-os/bluefin/blob/main/build_files/base/03-install-kernel-akmods.sh
+- https://github.com/ublue-os/bluefin/blob/main/build_files/base/19-initramfs.sh
+
+### Notes
+
+Those also include links that didn't work out in the end for various reasons, the one I use now is based on extracting the relevant parts of the bluefin scripts.
