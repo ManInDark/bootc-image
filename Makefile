@@ -1,6 +1,7 @@
 clean:
 	sudo rm -fr flathub output output-repo
 	sudo podman system prune
+	for container in $$(sudo podman container list --external --format "{{.ID}}"); do sudo podman rm $$container; done
 
 oci:
 	sudo podman build --network=host -t podman-image .
