@@ -1,7 +1,7 @@
 FROM scratch AS ctx
 COPY build_files /
 
-FROM ghcr.io/ublue-os/base-main:42
+FROM ghcr.io/ublue-os/base-main:43
 
 RUN rm -r /opt && mkdir /opt
 

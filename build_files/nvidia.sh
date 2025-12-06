@@ -5,7 +5,7 @@ echo "::group:: ===$(basename "$0")==="
 
 # Set Variables
 export AKMODS_FLAVOR=main
-export KERNEL="6.17.9-200.fc42.x86_64"
+export KERNEL="6.17.9-300.fc43.x86_64"
 export IMAGE_NAME=""
 
 set -eoux pipefail

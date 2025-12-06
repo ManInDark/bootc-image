@@ -2,4 +2,4 @@ NAME="ManInDark bootc Linux"
 ID=manindark-linux
 PRETTY_NAME="ManInDark's bootc Linux"
 VARIANT_ID=desktop
-VERSION_ID=42
+VERSION_ID=43
