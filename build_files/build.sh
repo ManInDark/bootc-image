@@ -21,3 +21,7 @@ curl -fsSLo /etc/yum.repos.d/vscode.repo https://packages.microsoft.com/yumrepos
 rpm-ostree install code
 rm /etc/yum.repos.d/vscode.repo
 
+# Install Veracrypt: https://veracrypt.io/en/Downloads.html
+curl -fsSLo "https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracrypt-1.26.24-Fedora-40-x86_64.rpm" /tmp/veracrypt.rpm
+rpm-ostree install -y /tmp/veracrypt.rpm
+rm /tmp/veracrypt.rpm
