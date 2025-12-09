@@ -54,6 +54,7 @@ It is possible to keep a revision by pinning it: `ostree admin pin 0`
 - ffmpeg
 - pandoc
 - ansible
+- sqlite
 - Flatpak (with default repository configured)
 - Chromium
 - Veracrypt
