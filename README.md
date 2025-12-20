@@ -88,4 +88,4 @@ It is possible to keep a revision by pinning it: `ostree admin pin 0`
 
 ### Notes
 
-Those also include links that didn't work out in the end for various reasons, the one I use now is based on extracting the relevant parts of the bluefin scripts.
+Those also include links that didn't work out in the end for various reasons, the one I use now is based on ublue-os/main scripts.

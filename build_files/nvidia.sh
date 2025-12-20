@@ -1,65 +1,103 @@
-#!/usr/bin/bash
-# based on https://raw.githubusercontent.com/ublue-os/bluefin/ba5d621270982b245343abcae47b3393cc5cffb8/build_files/base/03-install-kernel-akmods.sh
+#!/bin/bash
 
-echo "::group:: ===$(basename "$0")==="
+set -ouex pipefail
 
-# Set Variables
-export AKMODS_FLAVOR=main
-export KERNEL="6.17.9-300.fc43.x86_64"
-export IMAGE_NAME=""
+FRELEASE="$(rpm -E %fedora)"
+: "${AKMODNV_PATH:=/tmp/akmods-nv-rpms}"
 
-set -eoux pipefail
 
-# Remove Existing Kernel
-for pkg in kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra; do
-    rpm --erase $pkg --nodeps
-done
+# this is only to aid in human understanding of any issues in CI
+find "${AKMODNV_PATH}"/
 
-# Fetch Common AKMODS & Kernel RPMS
-skopeo copy --retry-times 3 docker://ghcr.io/ublue-os/akmods:"${AKMODS_FLAVOR}"-"$(rpm -E %fedora)"-"${KERNEL}" dir:/tmp/akmods
-AKMODS_TARGZ=$(jq -r '.layers[].digest' </tmp/akmods/manifest.json | cut -d : -f 2)
-tar -xvzf /tmp/akmods/"$AKMODS_TARGZ" -C /tmp/
-mv /tmp/rpms/* /tmp/akmods/
-# NOTE: kernel-rpms should auto-extract into correct location
-
-# Install Kernel
-dnf5 -y install \
-    /tmp/kernel-rpms/kernel-[0-9]*.rpm \
-    /tmp/kernel-rpms/kernel-core-*.rpm \
-    /tmp/kernel-rpms/kernel-modules-*.rpm
-
-# TODO: Figure out why akmods cache is pulling in akmods/kernel-devel
-dnf5 -y install \
-    /tmp/kernel-rpms/kernel-devel-*.rpm
-
-dnf5 versionlock add kernel kernel-devel kernel-devel-matched kernel-core kernel-modules kernel-modules-core kernel-modules-extra
-
-# Everyone
-# NOTE: we won't use dnf5 copr plugin for ublue-os/akmods until our upstream provides the COPR standard naming
-sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
-
-# Nvidia AKMODS
-
-# Fetch Nvidia RPMs
-skopeo copy --retry-times 3 docker://ghcr.io/ublue-os/akmods-nvidia-open:"${AKMODS_FLAVOR}"-"$(rpm -E %fedora)"-"${KERNEL}" dir:/tmp/akmods-rpms
-NVIDIA_TARGZ=$(jq -r '.layers[].digest' </tmp/akmods-rpms/manifest.json | cut -d : -f 2)
-tar -xvzf /tmp/akmods-rpms/"$NVIDIA_TARGZ" -C /tmp/
-mv /tmp/rpms/* /tmp/akmods-rpms/
-
-# Monkey patch right now...
-if ! grep -q negativo17 <(rpm -qi mesa-dri-drivers); then
-    dnf5 -y swap --repo=updates-testing \
-        mesa-dri-drivers mesa-dri-drivers
+if ! command -v dnf5 >/dev/null; then
+    echo "Requires dnf5... Exiting"
+    exit 1
 fi
 
-# Install Nvidia RPMs
-curl -sSL "https://raw.githubusercontent.com/ublue-os/main/main/build_files/nvidia-install.sh" -o /tmp/nvidia-install.sh
-chmod +x /tmp/nvidia-install.sh
-/tmp/nvidia-install.sh
-rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json
-ln -sf libnvidia-ml.so.1 /usr/lib64/libnvidia-ml.so
-tee /usr/lib/bootc/kargs.d/00-nvidia.toml <<EOF
-kargs = ["rd.driver.blacklist=nouveau", "modprobe.blacklist=nouveau", "nvidia-drm.modeset=1", "initcall_blacklist=simpledrm_platform_driver_init"]
-EOF
+# Check if any rpmfusion repos exist before trying to disable them
+if dnf5 repolist --all | grep -q rpmfusion; then
+    dnf5 config-manager setopt "rpmfusion*".enabled=0
+fi
 
-echo "::endgroup::"
+# Always try to disable cisco repo (or add similar check)
+dnf5 config-manager setopt fedora-cisco-openh264.enabled=0
+
+## nvidia install steps
+dnf5 install -y "${AKMODNV_PATH}"/ublue-os/ublue-os-nvidia-addons-*.rpm
+
+# Install MULTILIB packages from negativo17-multimedia prior to disabling repo
+
+MULTILIB=(
+    mesa-dri-drivers.i686
+    mesa-filesystem.i686
+    mesa-libEGL.i686
+    mesa-libGL.i686
+    mesa-libgbm.i686
+    mesa-va-drivers.i686
+    mesa-vulkan-drivers.i686
+)
+
+dnf5 install -y "${MULTILIB[@]}"
+
+# enable repos provided by ublue-os-nvidia-addons (not enabling fedora-nvidia-lts)
+dnf5 config-manager setopt fedora-nvidia.enabled=1 nvidia-container-toolkit.enabled=1
+
+# Disable Multimedia
+NEGATIVO17_MULT_PREV_ENABLED=N
+if dnf5 repolist --enabled | grep -q "fedora-multimedia"; then
+    NEGATIVO17_MULT_PREV_ENABLED=Y
+    echo "disabling negativo17-fedora-multimedia to ensure negativo17-fedora-nvidia is used"
+    dnf5 config-manager setopt fedora-multimedia.enabled=0
+fi
+
+# Enable staging for supergfxctl if repo file exists
+if [[ -f /etc/yum.repos.d/_copr_ublue-os-staging.repo ]]; then
+    sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-staging.repo
+else
+    # Otherwise, retrieve the repo file for staging
+    curl -Lo /etc/yum.repos.d/_copr_ublue-os-staging.repo https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-"${FRELEASE}"/ublue-os-staging-fedora-"${FRELEASE}".repo
+fi
+
+source "${AKMODNV_PATH}"/kmods/nvidia-vars
+
+dnf5 install -y \
+    libnvidia-fbc \
+    libnvidia-ml.i686 \
+    libva-nvidia-driver \
+    nvidia-driver \
+    nvidia-driver-cuda \
+    nvidia-driver-cuda-libs.i686 \
+    nvidia-driver-libs.i686 \
+    nvidia-settings \
+    nvidia-container-toolkit \
+    "${AKMODNV_PATH}"/kmods/kmod-nvidia-"${KERNEL_VERSION}"-"${NVIDIA_AKMOD_VERSION}"."${DIST_ARCH}".rpm
+
+# Ensure the version of the Nvidia module matches the driver
+KMOD_VERSION="$(rpm -q --queryformat '%{VERSION}' kmod-nvidia)"
+DRIVER_VERSION="$(rpm -q --queryformat '%{VERSION}' nvidia-driver)"
+if [ "$KMOD_VERSION" != "$DRIVER_VERSION" ]; then
+    echo "Error: kmod-nvidia version ($KMOD_VERSION) does not match nvidia-driver version ($DRIVER_VERSION)"
+    exit 1
+fi
+
+## nvidia post-install steps
+# disable repos provided by ublue-os-nvidia-addons
+dnf5 config-manager setopt fedora-nvidia.enabled=0 fedora-nvidia-lts.enabled=0 nvidia-container-toolkit.enabled=0
+
+# Disable staging
+sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/_copr_ublue-os-staging.repo
+
+systemctl enable ublue-nvctk-cdi.service
+semodule --verbose --install /usr/share/selinux/packages/nvidia-container.pp
+
+# Universal Blue specific Initramfs fixes
+cp /etc/modprobe.d/nvidia-modeset.conf /usr/lib/modprobe.d/nvidia-modeset.conf
+# we must force driver load to fix black screen on boot for nvidia desktops
+sed -i 's@omit_drivers@force_drivers@g' /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
+# as we need forced load, also mustpre-load intel/amd iGPU else chromium web browsers fail to use hardware acceleration
+sed -i 's@ nvidia @ i915 amdgpu nvidia @g' /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
+
+# re-enable negativo17-mutlimedia since we disabled it
+if [[ "${NEGATIVO17_MULT_PREV_ENABLED}" = "Y" ]]; then
+    dnf5 config-manager setopt fedora-multimedia.enabled=1
+fi

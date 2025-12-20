@@ -1,14 +1,10 @@
 #!/usr/bin/bash
-# https://github.com/ublue-os/bluefin/blob/ba5d621270982b245343abcae47b3393cc5cffb8/build_files/base/19-initramfs.sh
 
-echo "::group:: ===$(basename "$0")==="
+set -eoux pipefail
 
-set -oue pipefail
+KERNEL_VERSION="$(rpm -q --queryformat="%{evr}.%{arch}" kernel-core)"
 
-KERNEL_SUFFIX=""
-QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-(|'"$KERNEL_SUFFIX"'-)(\d+\.\d+\.\d+)' | sed -E 's/kernel-(|'"$KERNEL_SUFFIX"'-)//')"
+# Ensure Initramfs is generated
 export DRACUT_NO_XATTR=1
-/usr/bin/dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
-chmod 0600 "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
-
-echo "::endgroup::"
+/usr/bin/dracut --no-hostonly --kver "${KERNEL_VERSION}" --reproducible -v --add ostree -f "/lib/modules/${KERNEL_VERSION}/initramfs.img"
+chmod 0600 "/lib/modules/${KERNEL_VERSION}/initramfs.img"
