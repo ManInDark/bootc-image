@@ -53,7 +53,7 @@ if ! grep -q negativo17 <(rpm -qi mesa-dri-drivers); then
 fi
 
 # Install Nvidia RPMs
-curl -sSL "https://raw.githubusercontent.com/ublue-os/main/main/build_files/nvidia-install.sh" -o /tmp/nvidia-install.sh
+curl -sSL "https://raw.githubusercontent.com/ublue-os/main/0454e5857ac43c47e8d0b365a1c6a3912a5f9859/build_files/nvidia-install.sh" -o /tmp/nvidia-install.sh
 chmod +x /tmp/nvidia-install.sh
 /tmp/nvidia-install.sh
 rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json
