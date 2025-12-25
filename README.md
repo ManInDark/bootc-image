@@ -57,6 +57,7 @@ It is possible to keep a revision by pinning it: `ostree admin pin 0`
 - sqlite
 - netcat
 - tor & torbrowser-launcher
+- podman compose
 - Flatpak (with default repository configured)
 - Chromium
 - Veracrypt
