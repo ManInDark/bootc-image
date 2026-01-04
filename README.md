@@ -39,6 +39,7 @@ It is possible to keep a revision by pinning it: `ostree admin pin 0`
 
 - man
 - langpacks: en, de
+- default-fonts-cjk
 - Gnome + Software
 - curl
 - git
