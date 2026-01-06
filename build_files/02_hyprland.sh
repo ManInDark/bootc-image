@@ -8,3 +8,5 @@ dnf5 install -y \
     hypridle \
     hyprlock \
     hyprpolkitagent
+
+cp /ctx/hypr* /usr/lib/systemd/system
