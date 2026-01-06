@@ -3,6 +3,9 @@
 set -ouex pipefail
 
 dnf5 install -y \
+    gnome-keyring \
+    gnome-keyring-pam \
+    evolution \
     fzf \
     vlc \
     curl \

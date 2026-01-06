@@ -4,8 +4,6 @@ set -ouex pipefail
 
 dnf5 install -y --setopt=exclude=gnome-tour,malcontent-control \
     gnome-shell \
-    gnome-keyring \
-    gnome-keyring-pam \
     gnome-terminal \
     gnome-bluetooth \
     gnome-calculator \
@@ -18,7 +16,6 @@ dnf5 install -y  \
     totem \
     nautilus \
     seahorse \
-    evolution \
     gstreamer1-plugin-libav
 
 git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git /usr/share/gnome-shell/extensions/clipboard-indicator@tudmotu.com
