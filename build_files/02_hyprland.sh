@@ -8,6 +8,7 @@ dnf5 install -y \
     hypridle \
     hyprlock \
     hyprpolkitagent \
-    waybar
+    waybar \
+    pavucontrol
 
 cp /ctx/hypr* /usr/lib/systemd/system
