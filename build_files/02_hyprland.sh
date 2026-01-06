@@ -7,6 +7,7 @@ dnf5 install -y \
     hyprland \
     hypridle \
     hyprlock \
-    hyprpolkitagent
+    hyprpolkitagent \
+    waybar
 
 cp /ctx/hypr* /usr/lib/systemd/system
