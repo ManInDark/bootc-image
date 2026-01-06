@@ -1,10 +1,13 @@
 clean:
 	sudo rm -fr flathub output output-repo
 	sudo podman system prune
-	for container in $$(sudo podman container list --external --format "{{.ID}}"); do sudo podman rm $$container; done
+	for container in $$(sudo podman container list --external --format "{{.ID}}"); do sudo podman rm --force $$container; done
 
 oci:
 	sudo podman build --network=host -t podman-image .
+
+oci_hyprland:
+	sudo podman build --network=host -t podman-image-hyprland --build-arg DESKTOP_ENVIRONMENT=hyprland .
 
 CONTAINER_IMAGE=localhost/podman-image
 FILESYSTEM_TYPE=ext4
