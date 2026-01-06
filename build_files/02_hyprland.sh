@@ -12,3 +12,6 @@ dnf5 install -y \
     pavucontrol
 
 cp /ctx/hypr* /usr/lib/systemd/system
+for service in $(ls /ctx/hypr*); do
+	systemctl enable $service;
+done
