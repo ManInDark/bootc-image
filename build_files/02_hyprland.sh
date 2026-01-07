@@ -9,9 +9,6 @@ dnf5 install -y \
     hyprlock \
     hyprpolkitagent \
     waybar \
-    pavucontrol
+    pavucontrol \
+    sddm
 
-cp /ctx/hypr* /usr/lib/systemd/system
-for service in $(ls /ctx/hypr*); do
-	systemctl enable $service;
-done
