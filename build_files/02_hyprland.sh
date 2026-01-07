@@ -10,5 +10,5 @@ dnf5 install -y \
     hyprpolkitagent \
     waybar \
     pavucontrol \
-    sddm
+    greetd
 
