@@ -9,6 +9,5 @@ dnf5 install -y \
     hyprlock \
     hyprpolkitagent \
     waybar \
-    pavucontrol \
-    greetd
+    pavucontrol
 
