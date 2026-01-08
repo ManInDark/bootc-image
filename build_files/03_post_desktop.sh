@@ -46,3 +46,5 @@ dnf5 install -y https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracryp
 
 dnf5 remove  -y rpmfusion-free-release rpmfusion-nonfree-release
 dnf5 clean all
+
+cp /ctx/login /etc/pam.d
