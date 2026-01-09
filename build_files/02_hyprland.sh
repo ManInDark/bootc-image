@@ -9,5 +9,6 @@ dnf5 install -y \
     hyprlock \
     hyprpolkitagent \
     waybar \
-    pavucontrol
+    pavucontrol \
+    cliphist
 
