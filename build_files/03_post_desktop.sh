@@ -49,4 +49,3 @@ dnf5 clean all
 
 cp /ctx/login /etc/pam.d
 
-echo 'if [[ $(ps aux | grep hyprland | wc -l) -eq 1 ]]; then cd $HOME && echo "launch hyprland?" && read && hyprland ; else echo "hyprland already running"; fi' >> /etc/profile.d/launch_hyprland.sh
