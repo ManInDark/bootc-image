@@ -8,6 +8,7 @@ dnf5 install -y \
     hyprland \
     hypridle \
     hyprlock \
+    hyprshot \
     hyprpolkitagent \
     waybar \
     pavucontrol \
