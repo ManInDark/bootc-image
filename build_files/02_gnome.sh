@@ -14,7 +14,6 @@ dnf5 install -y --setopt=exclude=gnome-tour,malcontent-control \
     gnome-shell-extension-appindicator
 dnf5 install -y  \
     totem \
-    nautilus \
     seahorse \
     gstreamer1-plugin-libav
 

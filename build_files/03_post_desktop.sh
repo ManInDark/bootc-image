@@ -20,6 +20,7 @@ dnf5 install -y \
     flatpak \
     chromium \
     pciutils \
+    nautilus \
     tailscale \
     podman-compose \
     netcat tor torbrowser-launcher \
