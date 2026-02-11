@@ -4,10 +4,10 @@ set -ouex pipefail
 
 dnf5 install -y pacman
 
-pacman -Sy \
+yes | pacman -Sy \
 	librsvg
 
-pacman -Sy \
+yes | pacman -Sy \
 	hyprland \
 	hypridle \
 	hyprlock \
