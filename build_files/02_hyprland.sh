@@ -2,17 +2,20 @@
 
 set -ouex pipefail
 
-dnf5 copr enable -y solopasha/hyprland
+dnf5 install -y pacman
+
+pacman -S \
+	hyprland \
+	hypridle \
+	hyprlock \
+	hyprshot \
+	hyprpolkitagent \
+	cliphist
+
 dnf5 copr enable -y erikreider/SwayNotificationCenter
 dnf5 install -y \
-    hyprland \
-    hypridle \
-    hyprlock \
-    hyprshot \
-    hyprpolkitagent \
     waybar \
     pavucontrol \
-    cliphist \
     SwayNotificationCenter-git \
     foot
 
