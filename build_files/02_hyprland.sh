@@ -5,6 +5,9 @@ set -ouex pipefail
 dnf5 install -y pacman
 
 pacman -Sy \
+	librsvg
+
+pacman -Sy \
 	hyprland \
 	hypridle \
 	hyprlock \
