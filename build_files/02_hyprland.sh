@@ -4,7 +4,7 @@ set -ouex pipefail
 
 dnf5 install -y pacman
 
-pacman -S \
+pacman -Sy \
 	hyprland \
 	hypridle \
 	hyprlock \
