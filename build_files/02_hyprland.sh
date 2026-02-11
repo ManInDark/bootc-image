@@ -4,10 +4,10 @@ set -ouex pipefail
 
 dnf5 install -y pacman
 
-yes | pacman -Sy \
+yes | pacman -Sy --assume-installed tzdata=2025c-1 \
 	librsvg
 
-yes | pacman -Sy \
+yes | pacman -Sy --assume-installed tzdata=2025c-1 \
 	hyprland \
 	hypridle \
 	hyprlock \
