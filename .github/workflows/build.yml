@@ -3,7 +3,7 @@ name: Build container image
 on:
   pull_request:
   schedule:
-    - cron: '30 1 * * *'
+    - cron: '30 1 0 * *'
   push:
     paths:
       - "Containerfile"
