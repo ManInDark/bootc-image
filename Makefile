@@ -9,6 +9,9 @@ oci:
 oci_hyprland:
 	sudo podman build --network=host -t podman-image-hyprland --build-arg DESKTOP_ENVIRONMENT=hyprland .
 
+oci_hyprland_default:
+	sudo podman build --network=host -t podman-image-hyprland-default --build-arg DESKTOP_ENVIRONMENT=hyprland --build-arg BASE=base-main .
+
 CONTAINER_IMAGE=localhost/podman-image
 FILESYSTEM_TYPE=ext4
 qcow:

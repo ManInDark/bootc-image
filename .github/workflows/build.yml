@@ -31,6 +31,9 @@ jobs:
         desktop_environment:
           - gnome
           - hyprland
+        base:
+          - base-main
+          - base-nvidia
 
     permissions:
       contents: read
@@ -68,8 +71,8 @@ jobs:
         id: metadata
         with:
           tags: |
-            type=raw,value=${{ github.ref_name }}.${{ matrix.desktop_environment }}.${{ env.DEFAULT_TAG }}
-            type=raw,value=${{ github.ref_name }}.${{ matrix.desktop_environment }}.{{date 'YYYYMMDD-HHmm'}}
+            type=raw,value=${{ github.ref_name }}.${{ matrix.base }}.${{ matrix.desktop_environment }}.${{ env.DEFAULT_TAG }}
+            type=raw,value=${{ github.ref_name }}.${{ matrix.base }}.${{ matrix.desktop_environment }}.{{date 'YYYYMMDD-HHmm'}}
             type=sha,enable=${{ github.event_name == 'pull_request' }}
             type=ref,event=pr
           labels: |
@@ -81,7 +84,7 @@ jobs:
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
             org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/tree/${{ github.sha }}
             org.opencontainers.image.vendor=${{ github.repository_owner }}
-            org.opencontainers.image.version=${{ github.ref_name }}.${{ matrix.desktop_environment }}.{{date 'YYYYMMDD-HHmm'}}
+            org.opencontainers.image.version=${{ github.ref_name }}.${{ matrix.base }}.${{ matrix.desktop_environment }}.{{date 'YYYYMMDD-HHmm'}}
             io.artifacthub.package.deprecated=false
             io.artifacthub.package.keywords=${{ env.IMAGE_KEYWORDS }}
             io.artifacthub.package.license=Apache-2.0
@@ -103,6 +106,7 @@ jobs:
           oci: false
           build-args: |
             DESKTOP_ENVIRONMENT=${{ matrix.desktop_environment }}
+            BASE=${{ matrix.base }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3
