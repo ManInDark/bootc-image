@@ -16,4 +16,6 @@ dnf5 install -y \
     SwayNotificationCenter-git \
     foot
 
-echo 'if [[ $(ps aux | grep hyprland | wc -l) -eq 1 ]]; then cd $HOME && echo "launch hyprland?" && read && systemd-run --user --service-type=exec --unit=hyprland --description="hyprland start service" hyprland ; fi' >> /etc/profile.d/launch_hyprland.sh
+cp /ctx/hyprland.service /usr/lib/systemd/user/hyprland.service
+systemctl daemon-reload
+systemctl --global enable hyprland.service
