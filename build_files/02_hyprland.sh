@@ -16,5 +16,5 @@ dnf5 install -y \
     SwayNotificationCenter-git \
     foot
 
-cp /ctx/hyprland@.service /usr/lib/systemd/user/hyprland@.service
-systemctl --global enable hyprland@.service
+cp /ctx/hyprland.service /usr/lib/systemd/user/hyprland.service
+systemctl --global enable hyprland.service

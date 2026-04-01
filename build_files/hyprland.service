@@ -5,6 +5,4 @@ Description=Start Hyprland as User
 Type=exec
 ExecStartPre=/usr/bin/hyprland --verify-config
 ExecStart=/usr/bin/hyprland
-
-[Install]
-WantedBy=user@.service
+Slice=app.slice
