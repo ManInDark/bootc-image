@@ -18,7 +18,6 @@ dnf5 install -y \
     direnv \
     sqlite \
     flatpak \
-    chromium \
     pciutils \
     nautilus \
     tailscale \
