@@ -2,4 +2,4 @@
 
 set -ouex pipefail
 
-dnf5 remove -y firefox firefox-langpacks
+dnf5 remove -y firefox firefox-langpacks cosign

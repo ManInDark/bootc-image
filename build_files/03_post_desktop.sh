@@ -24,8 +24,6 @@ dnf5 install -y \
     podman-compose \
     netcat tor torbrowser-launcher \
     ansible-core ansible-collection-community-general \
-    pandoc-common pandoc-pdf texlive-collection-langgerman \
-    hugo \
     ibus-mozc
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
