@@ -2,6 +2,8 @@
 
 set -ouex pipefail
 
-dnf5 install -y \
+dnf5 install -y --setopt=install_weak_deps=False \
 	niri \
-	niri-settings
+	niri-settings \
+	waybar \
+	foot
