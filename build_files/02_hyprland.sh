@@ -2,7 +2,7 @@
 
 set -ouex pipefail
 
-dnf5 copr enable -y solopasha/hyprland
+dnf5 copr enable -y lionheartp/Hyprland
 dnf5 copr enable -y erikreider/SwayNotificationCenter
 dnf5 install -y \
     hyprland \
