@@ -10,6 +10,7 @@ dnf5 install -y \
     hyprlock \
     hyprshot \
     hyprpolkitagent \
+    hyprland-guiutils \
     waybar \
     pavucontrol \
     cliphist \

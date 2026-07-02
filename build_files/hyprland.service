@@ -4,7 +4,7 @@ Description=Start Hyprland as User
 [Service]
 Type=exec
 ExecStartPre=/usr/bin/hyprland --verify-config
-ExecStart=/usr/bin/hyprland
+ExecStart=/usr/bin/start-hyprland
 
 [Install]
 WantedBy=default.target
