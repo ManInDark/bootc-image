@@ -31,6 +31,10 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 systemctl enable tailscaled.service
 systemctl disable sshd.service
 
+# Install ZeroTier
+curl -fsSLo /tmp/zerotier.rpm https://download.zerotier.com/redhat/fc/43/zerotier-one-1.16.2-1.fc40.x86_64.rpm
+rpm-ostree install /tmp/zerotier.rpm
+
 # Install VSCode: https://packages.microsoft.com/yumrepos/vscode/
 curl -fsSLo /etc/yum.repos.d/vscode.repo https://packages.microsoft.com/yumrepos/vscode/config.repo
 rpm-ostree install code
