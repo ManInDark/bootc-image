@@ -3,7 +3,7 @@ ARG BASE="base-nvidia"
 FROM scratch AS ctx
 COPY build_files /
 
-FROM ghcr.io/ublue-os/${BASE}:43
+FROM ghcr.io/ublue-os/${BASE}:44
 
 RUN rm -r /opt && mkdir /opt
 
