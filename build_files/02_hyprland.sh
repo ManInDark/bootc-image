@@ -15,7 +15,10 @@ dnf5 install -y \
     pavucontrol \
     cliphist \
     SwayNotificationCenter-git \
-    foot
+    foot \
+    xdg-desktop-portal \
+    xdg-desktop-portal-hyprland \
+    xdg-desktop-portal-gtk
 
 cp /ctx/hyprland.service /usr/lib/systemd/user/hyprland.service
 systemctl --global enable hyprland.service
