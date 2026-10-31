@@ -9,4 +9,4 @@ ExecStartPre=/usr/bin/hyprland --verify-config
 ExecStart=/usr/bin/start-hyprland
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target
