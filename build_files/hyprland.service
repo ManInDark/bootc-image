@@ -1,5 +1,7 @@
 [Unit]
 Description=Start Hyprland as User
+Before=graphical-session.target
+PartOf=graphical-session.target
 
 [Service]
 Type=exec
@@ -7,4 +9,4 @@ ExecStartPre=/usr/bin/hyprland --verify-config
 ExecStart=/usr/bin/start-hyprland
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
