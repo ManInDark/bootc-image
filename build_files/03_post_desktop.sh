@@ -20,7 +20,6 @@ dnf5 install -y \
     flatpak \
     pciutils \
     nautilus \
-    tailscale \
     podman-compose \
     netcat tor torbrowser-launcher \
     ansible-core ansible-collection-community-general \
@@ -28,7 +27,6 @@ dnf5 install -y \
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-systemctl enable tailscaled.service
 systemctl disable sshd.service
 
 # Install ZeroTier
