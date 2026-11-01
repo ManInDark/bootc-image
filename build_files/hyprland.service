@@ -2,6 +2,7 @@
 Description=Start Hyprland as User
 Before=graphical-session.target
 PartOf=graphical-session.target
+Requires=graphical-session.target
 
 [Service]
 Type=exec
