@@ -32,6 +32,7 @@ systemctl disable sshd.service
 # Install NetBird
 cp /ctx/netbird.repo /etc/yum.repos.d/netbird.repo
 rpm-ostree install netbird netbird-ui gtk4 webkitgtk6.0 xdg-utils
+mkdir -p /var/log/netbird
 systemctl enable netbird
 
 # Install VSCode: https://packages.microsoft.com/yumrepos/vscode/
