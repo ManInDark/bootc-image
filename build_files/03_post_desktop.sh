@@ -45,7 +45,7 @@ dnf5 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release
 dnf5 install -y --allowerasing ffmpeg x265-libs
 
 # Install Veracrypt: https://veracrypt.io/en/Downloads.html
-dnf5 install -y https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracrypt-1.26.24-Fedora-40-x86_64.rpm
+dnf5 install -y https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracrypt-1.26.24-Fedora-40-x86_64.rpm fuse-devel
 
 dnf5 remove  -y rpmfusion-free-release rpmfusion-nonfree-release
 dnf5 clean all
